@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Celulas da Paz</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps_celulas">Map</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_teste">teste</string>
+    <string name="title_activity_maps_activity_teste">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_mapas_teste">MapasTeste</string>
+    <string name="title_activity_teste_mapa">TesteMapa</string>
+    <string name="title_activity_lista_celulas">ListaCelulas</string>
+    <string name="title_activity_detalhes_celula">Detalhes da Celula</string>
+    <string name="atos2_42">"E todos os dias, no templo e nas casas, não cessavam de ensinar, e de anunciar a Jesus Cristo." \nAtos 2:42</string>
+    <string name="atos2_47">"Louvando a Deus e tendo a simpatia de todo o povo. E o Senhor lhes acrescentava todos os dias os que iam sendo salvos. Atos 2:47" \nAtos 2:47</string>
+    <string name="sobre_celulas">"É muito importante que todos os cristãos da Igreja Local estejam congregando na Célula, onde a vida do Corpo se encontra de forma sintetizada em todos os seus muitos aspectos, tais como: adoração, intercessão, evangelismo, integração, discipulado, treinamento de líderes, comunhão, assistência social, etc."</string>
+</resources>
