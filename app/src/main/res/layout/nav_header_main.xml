@@ -20,10 +20,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Igreja da Paz Fortaleza"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:gravity="bottom" />
 
     <TextView
         android:id="@+id/textView"

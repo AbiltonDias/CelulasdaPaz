@@ -67,6 +67,8 @@ public class Filtros extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 intent = new Intent(Filtros.this, MapsCelulas.class);
                 intent.putExtras(parametros);
+                intent.putExtra("latitude",getIntent().getExtras().getDouble("latitude"));
+                intent.putExtra("longitude",getIntent().getExtras().getDouble("longitude"));
                 startActivity(intent);
                 break;
             case "lista":

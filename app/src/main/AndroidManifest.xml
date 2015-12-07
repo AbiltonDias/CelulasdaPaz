@@ -70,6 +70,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.igrejadapaz.fortaleza.celulasdapaz.MainActivity" />
         </activity>
+        <activity
+            android:name=".BuscarCelula"
+            android:label="@string/title_activity_buscar_celula"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.igrejadapaz.fortaleza.celulasdapaz.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

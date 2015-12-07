@@ -30,6 +30,7 @@ public class MapsCelulas extends MainActivity
 
     private String filtro;
     private GoogleMap mMap;
+    private LatLng endereco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class MapsCelulas extends MainActivity
         Intent intent = getIntent();
         Bundle args = intent.getExtras();
         filtro = args.getString("filtroDia") + args.getString("filtroTipo");
+        endereco = new LatLng(getIntent().getExtras().getDouble("latitude"),getIntent().getExtras().getDouble("longitude"));
     }
 
     @Override
@@ -68,7 +70,6 @@ public class MapsCelulas extends MainActivity
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.setContentDescription("Celulas em Fortaleza");
 
-        LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
 
         LatLng igreja = new LatLng(-3.8129413, -38.449650);
         mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz_55x55)));
@@ -76,11 +77,16 @@ public class MapsCelulas extends MainActivity
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(igreja, 30));
 
-        CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
-
+        if(endereco == null || endereco.latitude == 0.0) {
+            LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
+            CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+        }else {
+            CameraPosition cameraPosition = CameraPosition.builder().target(endereco).zoom(15).bearing(360).build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+        }
         //Add marher pelo endereço
-        mMap.addMarker(new MarkerOptions().position(getLatLngFromAddress("Av. Washington Soares, 1321")).title("Unifor"));
+//        mMap.addMarker(new MarkerOptions().position(getLatLngFromAddress("Av. Washington Soares, 1321")).title("Unifor"));
 
         marcarCelulas();
 

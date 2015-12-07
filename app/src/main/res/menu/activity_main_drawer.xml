@@ -10,27 +10,27 @@
             android:id="@+id/nav_list"
             android:icon="@android:drawable/ic_menu_agenda"
             android:title="Lista" />
-        <!--<item-->
-            <!--android:id="@+id/nav_slideshow"-->
-            <!--android:icon="@android:drawable/ic_menu_slideshow"-->
-            <!--android:title="Slideshow" />-->
+        <item
+            android:id="@+id/nav_buscar"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Buscar" />
         <!--<item-->
             <!--android:id="@+id/nav_manage"-->
             <!--android:icon="@android:drawable/ic_menu_manage"-->
             <!--android:title="Tools" />-->
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@android:drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@android:drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>
