@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -164,8 +165,35 @@ public class CelulaDao extends SQLiteOpenHelper{
         getWritableDatabase().update(TABELA, valores, "id=?", args);
     }
 
-    public CelulaBean getCelula(int id) {
+    public CelulaBean getCelulaId(int id) {
         String sql = "Select * from celula where id =" + id;
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+        CelulaBean celula = new CelulaBean();
+
+        try {
+            while (cursor.moveToNext()) {
+                celula.setId(cursor.getInt(0));
+                celula.setNome(cursor.getString(1));
+                celula.setEndereco(cursor.getString(2));
+                celula.setLiderNome(cursor.getString(3));
+                celula.setTelefoneInformacao(cursor.getString(4));
+                celula.setDiaHora(cursor.getString(5));
+                celula.setLatitude(cursor.getDouble(6));
+                celula.setLongitude(cursor.getDouble(7));
+                celula.setSemanaID(cursor.getInt(8));
+                celula.setTipoID(cursor.getInt(9));
+                celula.setRedeID(cursor.getInt(10));
+            }
+        } catch (android.database.SQLException sqle) {
+        } finally {
+            cursor.close();
+        }
+
+        return celula;
+    }
+
+    public CelulaBean getCelulaPosition(LatLng latLng) {
+        String sql = "Select * from celula where latitude =" + latLng.latitude;
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
         CelulaBean celula = new CelulaBean();
 

@@ -36,7 +36,6 @@ public class DetalhesCelula extends MainActivity
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Lista das Células");
-//        bar.hide();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

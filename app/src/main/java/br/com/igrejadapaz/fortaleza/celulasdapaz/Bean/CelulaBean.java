@@ -141,7 +141,7 @@ public class CelulaBean implements Parcelable {
     }
 
     public void setMarkerOptions() {
-        MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(getPosicao()).title(getNome()).snippet(getDiaHora() + " Contato: " + getTelefoneInformacao() + " -" + getLiderNome());
+        MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(getPosicao()).title(getNome()).snippet(getDiaHora());
         this.markerOptions = markerOptions;
     }
 

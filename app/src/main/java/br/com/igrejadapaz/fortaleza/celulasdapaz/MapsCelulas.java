@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,6 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -31,6 +36,8 @@ public class MapsCelulas extends MainActivity
     private String filtro;
     private GoogleMap mMap;
     private LatLng endereco;
+    private CelulaBean celulaSelecionada;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,6 @@ public class MapsCelulas extends MainActivity
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Mapas das Células");
-//        bar.hide();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,6 +66,22 @@ public class MapsCelulas extends MainActivity
         Bundle args = intent.getExtras();
         filtro = args.getString("filtroDia") + args.getString("filtroTipo");
         endereco = new LatLng(getIntent().getExtras().getDouble("latitude"),getIntent().getExtras().getDouble("longitude"));
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (celulaSelecionada == null) {
+                    Snackbar.make(view, "Selecione uma Célula para mais informações", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    Intent intent1 = new Intent(MapsCelulas.this, DetalhesCelula.class);
+                    intent1.putExtra("celulaSelecionada", (Parcelable) celulaSelecionada);
+                    startActivity(intent1);
+                }
+            }
+        });
+        fab.hide();
     }
 
     @Override
@@ -71,7 +93,7 @@ public class MapsCelulas extends MainActivity
         mMap.setContentDescription("Celulas em Fortaleza");
 
 
-        LatLng igreja = new LatLng(-3.8129413, -38.449650);
+        final LatLng igreja = new LatLng(-3.8129413, -38.449650);
         mMap.addMarker(new MarkerOptions().position(igreja).title("Igreja da Paz").snippet("Sede regional").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_ig_paz_55x55)));
 
 
@@ -82,13 +104,27 @@ public class MapsCelulas extends MainActivity
             CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
         }else {
-            CameraPosition cameraPosition = CameraPosition.builder().target(endereco).zoom(15).bearing(360).build();
+            CameraPosition cameraPosition = CameraPosition.builder().target(endereco).zoom(14).bearing(360).build();
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+            mMap.addMarker(new MarkerOptions().position(endereco).title(getIntent().getExtras().getString("enderecoDigitado")));
         }
-        //Add marher pelo endereço
-//        mMap.addMarker(new MarkerOptions().position(getLatLngFromAddress("Av. Washington Soares, 1321")).title("Unifor"));
 
         marcarCelulas();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                CelulaDao dao = new CelulaDao(MapsCelulas.this);
+                if (marker.getPosition().latitude != igreja.latitude){
+                    celulaSelecionada = dao.getCelulaPosition(marker.getPosition());
+                }else {
+                    celulaSelecionada=null;
+                }
+                fab.show();
+                dao.close();
+                return false;
+            }
+        });
 
     }
 
@@ -147,7 +183,7 @@ public class MapsCelulas extends MainActivity
                 CelulaBean celulaSelecionada = getIntent().getExtras().getParcelable("celulaSelecionada");
                 mMap.addMarker(celulaSelecionada.getMarkerOptions());
                 mMap.stopAnimation();
-                CameraPosition cameraPosition = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(20).bearing(360).build();
+                CameraPosition cameraPosition = CameraPosition.builder().target(celulaSelecionada.getPosicao()).zoom(18).bearing(360).build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
                 break;
             default:

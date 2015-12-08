@@ -35,10 +35,10 @@ public class BuscarCelula extends MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_celula);
-        android.support.v7.app.ActionBar bar = getSupportActionBar();
-        bar.setTitle("Buscar Células");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setTitle("Buscar Células");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -105,6 +105,7 @@ public class BuscarCelula extends MainActivity
             longitude = getLatLngFromAddress(endereco).longitude;
             String para = "mapa";
             Intent intent = new Intent(BuscarCelula.this, Filtros.class);
+            intent.putExtra("enderecoDigitado",editTextEndereco.getText().toString());
             intent.putExtra("para", para);
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
@@ -137,18 +138,17 @@ public class BuscarCelula extends MainActivity
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
-//        mMap.setMapType(4);
+        LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.setContentDescription("Celulas em Fortaleza");
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(fortaleza, 9));
         mMap.stopAnimation();
-        LatLng fortaleza = new LatLng(-3.7913514, -38.5192009);
         CameraPosition cameraPosition = CameraPosition.builder().target(fortaleza).zoom(11).bearing(360).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 3000, null);
         CelulaDao dao = new CelulaDao(BuscarCelula.this);
         dao.getMarkers(mMap);
-//        mMap.stopAnimation();
 
     }
 
