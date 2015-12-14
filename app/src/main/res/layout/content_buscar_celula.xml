@@ -15,35 +15,26 @@
     android:id="@+id/dc"
     android:contextClickable="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver no mapa"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="126dp"
-        android:background="@drawable/buttonshape2"
-        android:onClick="verNoMapa" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Digite o endereço abaixo:"
+        android:text="Para buscar células próximas\nDigite o endereço abaixo:"
         android:id="@+id/textView4"
-        android:layout_above="@+id/editTextEndereco"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPostalAddress"
-        android:ems="10"
+        android:ems="14"
         android:id="@+id/editTextEndereco"
         android:contextClickable="true"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true" />
 
     <fragment
         android:id="@+id/map3"
@@ -53,5 +44,14 @@
         tools:context="br.com.igrejadapaz.fortaleza.celulasdapaz.BuscarCelula"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imageView6"
+        android:src="@drawable/ic_menu_search"
+        android:onClick="verNoMapa"
+        android:layout_alignBottom="@+id/editTextEndereco"
+        android:layout_toEndOf="@+id/editTextEndereco" />
 
 </RelativeLayout>

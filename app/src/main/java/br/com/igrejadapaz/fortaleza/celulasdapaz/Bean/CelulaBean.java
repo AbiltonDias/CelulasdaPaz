@@ -112,9 +112,16 @@ public class CelulaBean implements Parcelable {
     };
 
     public String toShared() {
+        String ao;
+        if (semanaID == 7){
+            ao =  "aos ";
+        }else {
+            ao = "as ";
+        }
         return "Que tal fazer novas amizades, dar boas risadas e se divertir\nenquanto conhece um pouco mais de Deus?\nGostaria muito de ter você na nossa célula!\nVamos?" +
-                "\nA " + getNome() + " que acontece todo " + getDiaHora() + " na " + getEndereco() +
+                "\nA " + getNome() + " que acontece " + ao + getDiaHora() + " na " + getEndereco() +
                 "\n \nhttps://www.google.com/maps/place//@" + getLatitude() + "," + getLongitude() + ",18z/";
+//                "\n\n https://www.google.com/maps?q=" + getLatitude() + "," + getLongitude() + "&z=18";
     }
 
     public String toString(){

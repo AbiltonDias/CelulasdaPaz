@@ -21,7 +21,8 @@
         android:id="@+id/textViewNome"
         android:layout_marginTop="183dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +32,8 @@
         android:id="@+id/textViewDiaHora"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewNome"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +43,8 @@
         android:id="@+id/textViewEndereco"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewDiaHora"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +54,8 @@
         android:id="@+id/textViewTipo"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewEndereco"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +65,8 @@
         android:id="@+id/textViewNomeLider"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textViewTipo"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +76,8 @@
         android:id="@+id/textViewTelefone"
         android:onClick="ligar"
         android:layout_alignBottom="@+id/imageViewCall"
-        android:layout_toEndOf="@+id/imageViewCall" />
+        android:layout_toEndOf="@+id/imageViewCall"
+        android:textSize="20dp" />
 
     <Button
         android:layout_width="170dp"
